@@ -13,9 +13,15 @@ return new class extends Migration
     {
         Schema::create('animals', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->integer('year');
+            $table->string('animal_name');
+            $table->string('scientific_name');
+            $table->text('description');
+            $table->text('behavioral_notes');
+            $table->string('lifespan');
+            $table->text('diet');
+            $table->text('social_structure');
+            $table->text('threats');
+            $table->text('primary_predator');
             $table->string('image_url');
             $table->timestamps();
         });
