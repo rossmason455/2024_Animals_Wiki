@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Animal;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class AnimalController extends Controller
@@ -12,7 +13,8 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        //
+        $animals = Animal::all();
+        return view('animals.index', compact('animals'));
     }
 
     /**
@@ -36,7 +38,7 @@ class AnimalController extends Controller
      */
     public function show(Animal $animal)
     {
-        //
+        return view ('animals.show')->with('animal', $animal);
     }
 
     /**
