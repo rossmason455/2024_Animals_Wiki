@@ -29,32 +29,29 @@ class AnimalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $request->validate(['animal_name' => 'required|string|max:255',
+public function store(Request $request)
+{
+    $request->validate([
+        'animal_name' => 'required|string|max:255',
         'scientific_name' => 'required|string|max:255',
-        'description' => 'nullable|string',
-        'behavioral_notes' => 'nullable|string',
-        'lifespan' => 'nullable|string|max:100',
-        'diet' => 'nullable|string|max:255',
-        'social_structure' => 'nullable|string|max:255',
-        'threats' => 'nullable|string|max:255',
-        'primary_predator' => 'nullable|string|max:255',
-        'image_url' => 'nullable|url|max:255',]);
+        'description' => 'required|string', // Change to required
+        'behavioral_notes' => 'required|string', // Change to required
+        'lifespan' => 'required|string|max:100', // Change to required
+        'diet' => 'required|string|max:255', // Change to required
+        'social_structure' => 'required|string|max:255', // Change to required
+        'threats' => 'required|string|max:255', // Change to required
+        'primary_predator' => 'required|string|max:255', // Change to required
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240', // Optional image
+    ]);
 
+    $imageName = null;
+    if ($request->hasFile('image')) {
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('image/animals'), $imageName);
+    }
 
-
-
-
-        if ($request->hasFile('image')){
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('image/animals'), $imageName);
-            
-        }
-    
-    
     Animal::create([
-          'animal_name' => $request->animal_name,
+        'animal_name' => $request->animal_name,
         'scientific_name' => $request->scientific_name,
         'description' => $request->description,
         'behavioral_notes' => $request->behavioral_notes,
@@ -63,14 +60,14 @@ class AnimalController extends Controller
         'social_structure' => $request->social_structure,
         'threats' => $request->threats,
         'primary_predator' => $request->primary_predator,
-        'image_url' => $request->image_url,
-        'created_at' => $request->created_at,
-        'updated_at' => $request->updated_at,]);
-    
-    
-    
-    
-    }
+        'image_url' => $imageName ? 'image/animals/' . $imageName : null, // Store image path
+    ]);
+
+    return redirect()->route('animals.index')->with('success', 'Animal created successfully!');
+}
+
+
+
 
     /**
      * Display the specified resource.
@@ -85,22 +82,58 @@ class AnimalController extends Controller
      */
     public function edit(Animal $animal)
     {
-        //
+         return view('animals.edit', compact('animal'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Animal $animal)
-    {
-        //
+public function update(Request $request, Animal $animal)
+{
+    $request->validate([
+        'animal_name' => 'required|string|max:255',
+        'scientific_name' => 'required|string|max:255',
+        'description' => 'required|string', // Change to required
+        'behavioral_notes' => 'required|string', // Change to required
+        'lifespan' => 'required|string|max:100', // Change to required
+        'diet' => 'required|string|max:255', // Change to required
+        'social_structure' => 'required|string|max:255', // Change to required
+        'threats' => 'required|string|max:255', // Change to required
+        'primary_predator' => 'required|string|max:255', // Change to required
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240', // Optional image
+    ]);
+
+    $imageName = null;
+    if ($request->hasFile('image')) {
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('image/animals'), $imageName);
     }
+
+    $animal->update([
+        'animal_name' => $request->animal_name,
+        'scientific_name' => $request->scientific_name,
+        'description' => $request->description,
+        'behavioral_notes' => $request->behavioral_notes,
+        'lifespan' => $request->lifespan,
+        'diet' => $request->diet,
+        'social_structure' => $request->social_structure,
+        'threats' => $request->threats,
+        'primary_predator' => $request->primary_predator,
+        'image_url' => $imageName ? 'image/animals/' . $imageName : $animal->image_url, // Use existing if no new image
+    ]);
+
+    return redirect()->route('animals.index')->with('success', 'Animal updated successfully!');
+}
+
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Animal $animal)
     {
-        //
+         $animal->delete(); // Deletes the animal from the database
+
+    return redirect()->route('animals.index')->with('success', 'Animal deleted successfully!');
     }
 }

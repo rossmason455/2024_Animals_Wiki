@@ -1,4 +1,4 @@
-<x-layout-app>
+<x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Create New Animal') }}
@@ -10,9 +10,9 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h3 class="font-semibold text-lg mb-4">Add a new Animal</h3>
-                    <x-animal-form :action="route('animal.store')" :method="'POST'" />
+                    <x-animal-form :action="route('animals.store')" :method="'POST'" />
                 </div>
             </div>
         </div>
     </div>
-</x-layout-app>
+</x-app-layout>
