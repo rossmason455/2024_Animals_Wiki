@@ -8,6 +8,8 @@ class Animal extends Model
 {
     use HasFactory;
 
+    // The Animal model represents the 'animals' table in the database and defines the fillable attributes for mass assignment.
+
     protected $fillable =[
          'animal_name',
     'scientific_name',

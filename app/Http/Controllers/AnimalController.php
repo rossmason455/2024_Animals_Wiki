@@ -38,7 +38,8 @@ class AnimalController extends Controller
      * Store a newly created resource in storage.
      */
 public function store(Request $request)
-{
+{ 
+    //ensures the request has the required fields
     $request->validate([
         'animal_name' => 'required|string|max:255',
         'scientific_name' => 'required|string|max:255',
@@ -51,13 +52,13 @@ public function store(Request $request)
         'primary_predator' => 'required|string|max:255', // Change to required
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240', // Optional image
     ]);
-
+//stores image provided into the images folder
     $imageName = null;
     if ($request->hasFile('image')) {
         $imageName = time() . '.' . $request->image->extension();
         $request->image->move(public_path('image/animals'), $imageName);
     }
-
+//inserts the new record into the animals table
     Animal::create([
         'animal_name' => $request->animal_name,
         'scientific_name' => $request->scientific_name,
@@ -70,7 +71,7 @@ public function store(Request $request)
         'primary_predator' => $request->primary_predator,
         'image_url' => $imageName ? 'image/animals/' . $imageName : null, // Store image path
     ]);
-
+//redirects to the index with a success message
     return redirect()->route('animals.index')->with('success', 'Animal created successfully!');
 }
 
@@ -106,9 +107,9 @@ public function update(Request $request, Animal $animal)
         'lifespan' => 'required|string|max:100', // Change to required
         'diet' => 'required|string|max:255', // Change to required
         'social_structure' => 'required|string|max:255', // Change to required
-        'threats' => 'required|string|max:255', // Change to required
-        'primary_predator' => 'required|string|max:255', // Change to required
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240', // Optional image
+        'threats' => 'required|string|max:255', 
+        'primary_predator' => 'required|string|max:255', 
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240', 
     ]);
 
     $imageName = null;
@@ -149,8 +150,18 @@ public function update(Request $request, Animal $animal)
 
 public function autocomplete(Request $request)
 {
+    // 1. Retrieve the 'query' parameter from the incoming request.
+    // This is the search term entered by the user.
     $query = $request->get('query');
+
+    // 2. Query the 'animals' table to find animals whose 'animal_name' 
+    // contains the search query (case-insensitive).
+    // 'LIKE' allows partial matching, and '%' is used to match any characters before and after the query.
+    // Only the 'animal_name' column is retrieved to keep the response lightweight.
     $animals = Animal::where('animal_name', 'LIKE', '%' . $query . '%')->get(['animal_name']); 
+
+    // 3. Return the matching animal names as a JSON response.
+    // The front-end can then use this data to display the suggestions.
     return response()->json($animals);
 }
 

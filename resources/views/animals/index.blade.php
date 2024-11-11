@@ -48,40 +48,58 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
+    // Listen for input events on the search field with id "search"
     $('#search').on('input', function() {
+        // Get the value typed in the search input field
         var query = $(this).val();
+
+        // Only proceed if the query length is greater than 2 characters
         if (query.length > 2) {
+            // Perform an AJAX GET request to the "animals.autocomplete" route
             $.ajax({
-                url: "{{ route('animals.autocomplete') }}",
-                type: "GET",
+                url: "{{ route('animals.autocomplete') }}", // URL of the autocomplete route
+                type: "GET", // HTTP method to be used
                 data: {
-                    query: query
+                    query: query // Send the search query as data to the server
                 },
+                // On successful response from the server
                 success: function(data) {
+                    // Clear the previous suggestions and make the suggestions container visible
                     $('#suggestions').empty().removeClass('hidden');
+
+                    // If there are results in the data returned by the server
                     if (data.length) {
+                        // Loop through each animal in the response data
                         data.forEach(function(animal) {
-                            // Only append the animal_name to suggestions
+                            // Append each animal name to the suggestions container as a clickable item
                             $('#suggestions').append(
                                 '<div class="suggestion-item cursor-pointer py-2 px-4 hover:bg-gray-200">' +
-                                animal.animal_name + '</div>');
+                                animal.animal_name + '</div>'
+                            );
                         });
                     } else {
+                        // If no results found, show a "No suggestions found" message
                         $('#suggestions').append(
-                            '<div class="py-2 px-4">No suggestions found</div>');
+                            '<div class="py-2 px-4">No suggestions found</div>'
+                        );
                     }
                 }
             });
         } else {
+            // If the query length is less than 3, hide the suggestions container
             $('#suggestions').empty().addClass('hidden');
         }
     });
 
-    // Handle click on suggestion
+    // Handle click events on suggestion items
     $(document).on('click', '.suggestion-item', function() {
+        // Set the value of the search input to the text of the clicked suggestion
         $('#search').val($(this).text());
+
+        // Clear the suggestions and hide the suggestions container
         $('#suggestions').empty().addClass('hidden');
     });
+
 });
 </script>
 

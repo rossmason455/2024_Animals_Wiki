@@ -927,7 +927,7 @@
                     <div class="flex items-center justify-center ">
 
 
-                        <div class=" w-[500px] h-80 bg-gray-200 border-8 border-[#043927] shadow-lg p-4 bg-[#043927]">
+                        <div class=" w-[500px] h-80 bg-gray-200 border-8 border-[#043927] shadow-lg p-4 bg-[#043926]">
 
                             <p class="text-center text-5xl text-white py-5 font-bold">
                                 Ross' Animal Wiki
