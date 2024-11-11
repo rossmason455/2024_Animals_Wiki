@@ -12,11 +12,19 @@ class AnimalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $animals = Animal::all();
-        return view('animals.index', compact('animals'));
-    }
+  public function index(Request $request)
+{
+    // Get the search query from the request
+    $search = $request->get('search');
+
+    // Retrieve animals with optional search filtering
+    $animals = Animal::when($search, function ($query) use ($search) {
+        return $query->where('animal_name', 'like', "%{$search}%")
+                     ->orWhere('scientific_name', 'like', "%{$search}%");
+    })->get();
+
+    return view('animals.index', compact('animals', 'search'));
+}
 
     /**
      * Show the form for creating a new resource.
@@ -136,4 +144,16 @@ public function update(Request $request, Animal $animal)
 
     return redirect()->route('animals.index')->with('success', 'Animal deleted successfully!');
     }
+
+
+
+public function autocomplete(Request $request)
+{
+    $query = $request->get('query');
+    $animals = Animal::where('animal_name', 'LIKE', '%' . $query . '%')->get(['animal_name']); 
+    return response()->json($animals);
+}
+
+
+
 }
