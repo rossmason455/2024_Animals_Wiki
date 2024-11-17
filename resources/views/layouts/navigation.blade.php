@@ -25,6 +25,12 @@
                         :active="request()->routeIs('animals.index')">
                         {{ __('View All Animals') }}
                     </x-nav-link>
+
+                    @if(auth()->user()->role === 'admin')
+                    <x-nav-link :href="route('animals.create')" :active="request()->routeIs('animals.create')">
+                        {{('Create New Animals')}}
+                    </x-nav-link>
+                    @endif
                     <x-nav-link class="navLinks" :href="route('animals.create')"
                         :active="request()->routeIs('animals.create')">
                         {{ __('Add Animal') }}
