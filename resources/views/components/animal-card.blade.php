@@ -12,7 +12,7 @@
 ])
 
 <div class="bg-white rounded-lg shadow-md overflow-hidden">
-    <img src="{{ asset($image) }}" alt="{{ $animal_name }}" class="w-full h-60 object-cover">
+    <img src="{{ asset($image) }}" alt="{{ $animal_name }}" class="w-full object-cover">
     <div class="p-4">
         <h3 class="font-bold text-lg">{{ $animal_name }}</h3>
 

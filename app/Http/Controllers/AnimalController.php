@@ -32,7 +32,7 @@ class AnimalController extends Controller
     public function create()
     {
 
-        if(auth()->users()->role !== 'admin'){
+        if(auth()->user()->role !== 'admin'){
             return redirect()->route('animals.index')->with('error', 'Access denied.');
         }
 

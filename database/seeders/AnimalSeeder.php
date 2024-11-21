@@ -66,7 +66,7 @@ class AnimalSeeder extends Seeder
                 'social_structure' => 'Herds, often consisting of family groups',
                 'threats' => 'Habitat loss, poaching, competition with livestock',
                 'primary_predator' => 'Lions, hyenas',
-                'image_url' => 'https://example.com/zebra.jpg', // Placeholder URL
+                'image_url' => 'images/zebra.jpg', // Placeholder URL
                 'created_at' => $currentTimestamp,
                 'updated_at' => $currentTimestamp,
             ],
@@ -80,7 +80,7 @@ class AnimalSeeder extends Seeder
                 'social_structure' => 'Solitary or small family groups',
                 'threats' => 'Habitat loss, human-wildlife conflict, poaching',
                 'primary_predator' => 'Humans, lions',
-                'image_url' => 'images/cheetah.jpg', // Placeholder URL
+                'image_url' => 'images/cheetah.jpg', 
                 'created_at' => $currentTimestamp,
                 'updated_at' => $currentTimestamp,
             ],

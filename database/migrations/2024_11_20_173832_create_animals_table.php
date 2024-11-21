@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateAnimalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('animals', function (Blueprint $table) {
-           $table->id();
+            $table->id();
             $table->string('animal_name');
             $table->string('scientific_name');
             $table->text('description');
@@ -34,4 +34,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('animals');
     }
-};
+}
