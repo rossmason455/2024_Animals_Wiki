@@ -24,4 +24,15 @@ class Animal extends Model
     'created_at',
     'updated_at',
     ];
+
+    public function family()
+    {
+        return $this->belongsTo(Family::class);
+    }
+
+
+
+
+
+
 }
