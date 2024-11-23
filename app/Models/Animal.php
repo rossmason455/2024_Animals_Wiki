@@ -30,7 +30,10 @@ class Animal extends Model
         return $this->belongsTo(Family::class);
     }
 
-
+    public function habitat()
+    {
+        return $this->belongsTo(Habitat::class);
+    }
 
 
 
