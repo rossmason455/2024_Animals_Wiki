@@ -2,16 +2,21 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+
 class HabitatSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * @return void
      */
-    public function run(): void
+    public function run()
     {
+
+
+
         DB::table('habitats')->insert([
             [
                 'habitat_name' => 'Savannah',
@@ -28,6 +33,22 @@ class HabitatSeeder extends Seeder
                 'description' => 'A barren area of landscape where little precipitation occurs.',
                 'climate' => 'Arid',
             ],
+            [
+                'habitat_name' => 'Grassland',
+                'description' => 'A large open area of country covered with grass or grasslike vegetation.',
+                'climate' => 'Semi-arid',
+            ],
+            [
+                'habitat_name' => 'Tropical Rainforest',
+                'description' => 'A dense forest found in tropical areas with consistently high rainfall.',
+                'climate' => 'Tropical',
+            ],
+            [
+                'habitat_name' => 'Woodlands',
+                'description' => 'A habitat type dominated by trees but with a less dense canopy than forests.',
+                'climate' => 'Temperate',
+            ],
         ]);
     }
 }
+

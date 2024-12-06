@@ -23,6 +23,8 @@ class Animal extends Model
     'image_url',
     'created_at',
     'updated_at',
+    'family_id',
+        'habitat_id',
     ];
 
     public function family()

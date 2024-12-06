@@ -6,12 +6,16 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Animal;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
 
 class AnimalSeeder extends Seeder
 {
     public function run(): void
     {
         $currentTimestamp = Carbon::now();
+
+
 
         Animal::insert([
             [
@@ -24,9 +28,11 @@ class AnimalSeeder extends Seeder
                 'social_structure' => 'Prides, consisting of related females, their cubs, and a few males',
                 'threats' => 'Habitat loss, human-wildlife conflict, poaching',
                 'primary_predator' => 'Humans',
-                'image_url' => 'images/Lion.jpg', // Placeholder URL
+                'image_url' => 'images/Lion.jpg', 
                 'created_at' => $currentTimestamp,
                 'updated_at' => $currentTimestamp,
+                'family_id' => DB::table('families')->where('family_name', 'Felidae')->value('id'),  
+                'habitat_id' => DB::table('habitats')->where('habitat_name', 'Savannah')->value('id'),  
             ],
             [
                 'animal_name' => 'Elephant',
@@ -38,9 +44,11 @@ class AnimalSeeder extends Seeder
                 'social_structure' => 'Herds, led by a matriarch',
                 'threats' => 'Poaching, habitat loss, human-wildlife conflict',
                 'primary_predator' => 'Humans',
-                'image_url' => 'images/elephant.jpg', // Placeholder URL
+                'image_url' => 'images/elephant.jpg', 
                 'created_at' => $currentTimestamp,
                 'updated_at' => $currentTimestamp,
+                'family_id' => DB::table('families')->where('family_name', 'Elephantidae')->value('id'),  
+                'habitat_id' => DB::table('habitats')->where('habitat_name', 'Forest')->value('id'),  
             ],
             [
                 'animal_name' => 'Giraffe',
@@ -52,9 +60,11 @@ class AnimalSeeder extends Seeder
                 'social_structure' => 'Loose herds with no strong bonds',
                 'threats' => 'Habitat loss, poaching, human-wildlife conflict',
                 'primary_predator' => 'Humans, lions',
-                'image_url' => 'images/giraffe.jpg', // Placeholder URL
+                'image_url' => 'images/giraffe.jpg', 
                 'created_at' => $currentTimestamp,
                 'updated_at' => $currentTimestamp,
+             'family_id' => DB::table('families')->where('family_name', 'Giraffidae')->value('id'),  
+                'habitat_id' => DB::table('habitats')->where('habitat_name', 'Savannah')->value('id'),  
             ],
             [
                 'animal_name' => 'Zebra',
@@ -66,9 +76,11 @@ class AnimalSeeder extends Seeder
                 'social_structure' => 'Herds, often consisting of family groups',
                 'threats' => 'Habitat loss, poaching, competition with livestock',
                 'primary_predator' => 'Lions, hyenas',
-                'image_url' => 'images/zebra.jpg', // Placeholder URL
+                'image_url' => 'images/zebra.jpg', 
                 'created_at' => $currentTimestamp,
                 'updated_at' => $currentTimestamp,
+                  'family_id' => DB::table('families')->where('family_name', 'Equidae')->value('id'),  
+                'habitat_id' => DB::table('habitats')->where('habitat_name', 'Savannah')->value('id'),  
             ],
             [
                 'animal_name' => 'Cheetah',
@@ -83,6 +95,9 @@ class AnimalSeeder extends Seeder
                 'image_url' => 'images/cheetah.jpg', 
                 'created_at' => $currentTimestamp,
                 'updated_at' => $currentTimestamp,
+                'family_id' => DB::table('families')->where('family_name', 'Felidae')->value('id'), 
+                'habitat_id' => DB::table('habitats')->where('habitat_name', 'Savannah')->value('id'),  
+               
             ],
         ]);
     }
