@@ -29,6 +29,11 @@
                         :active="request()->routeIs('families.index')">
                         {{ __('View All Animals Families') }}
                     </x-nav-link>
+                    <x-nav-link class="navLinks" :href="route('habitats.index')"
+                        :active="request()->routeIs('habitats.index')">
+                        {{ __('View All Animals Habitats') }}
+                    </x-nav-link>
+
 
 
                     @if(auth()->check() && auth()->user()->role === 'admin')
@@ -40,6 +45,12 @@
     @if(auth()->check() && auth()->user()->role === 'admin')
     <x-nav-link class="navLinks" :href="route('families.create')" :active="request()->routeIs('families.create')">
         {{ __('Add Animal Family') }}
+    </x-nav-link>
+@endif
+
+@if(auth()->check() && auth()->user()->role === 'admin')
+    <x-nav-link class="navLinks" :href="route('habitats.create')" :active="request()->routeIs('habitats.create')">
+        {{ __('Add Animal Habitat') }}
     </x-nav-link>
 @endif
                    

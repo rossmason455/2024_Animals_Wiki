@@ -46,11 +46,22 @@
 
 
 
-    @isset($family->image_url)
+    <!-- Animal Image -->
     <div class="mb-4">
-        <img src="{{ asset($family->image_url) }}" alt="family image" class="w-24 h-32 object-cover" />
+        <label for="image" class="block text-sm font-medium text-gray-700">Animal Image</label>
+        <input type="file" name="image" id="image" {{ isset($animal) ? '' : 'required' }}
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+        @error('image')
+        <p class="text-sm text-red-600">{{ $message }}</p>
+        @enderror
+    </div>
+
+    @isset($animal->image_url)
+    <div class="mb-4">
+        <img src="{{ asset($animal->image_url) }}" alt="Animal image" class="w-24 h-32 object-cover" />
     </div>
     @endisset
+
 
     <!-- Submit Button -->
     <div>

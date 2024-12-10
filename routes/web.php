@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\FamilyController;
+use App\Http\Controllers\HabitatController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -58,6 +59,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('families/{family}', [FamilyController::class, 'destroy'])->name('families.destroy');
     Route::get('families/{family}', [FamilyController::class, 'show'])->name('families.show');
 
+    Route::get('habitats', [HabitatController::class, 'index'])->name('habitats.index');
+    Route::get('habitats/create', [HabitatController::class, 'create'])->name('habitats.create');
+    Route::post('habitats', [HabitatController::class, 'store'])->name('habitats.store');
+    Route::get('habitats/{habitat}/edit', [HabitatController::class, 'edit'])->name('habitats.edit');
+    Route::put('habitats/{habiat}', [HabitatController::class, 'update'])->name('habitats.update');
+    Route::delete('habitats/{habitat}', [HabitatController::class, 'destroy'])->name('habitats.destroy');
+    Route::get('habitats/{habitat}', [HabitatController::class, 'show'])->name('habitats.show');
 
 
 
