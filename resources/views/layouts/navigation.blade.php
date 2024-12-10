@@ -25,10 +25,21 @@
                         :active="request()->routeIs('animals.index')">
                         {{ __('View All Animals') }}
                     </x-nav-link>
+                    <x-nav-link class="navLinks" :href="route('families.index')"
+                        :active="request()->routeIs('families.index')">
+                        {{ __('View All Animals Families') }}
+                    </x-nav-link>
+
 
                     @if(auth()->check() && auth()->user()->role === 'admin')
     <x-nav-link class="navLinks" :href="route('animals.create')" :active="request()->routeIs('animals.create')">
         {{ __('Add Animal') }}
+    </x-nav-link>
+    @endif
+
+    @if(auth()->check() && auth()->user()->role === 'admin')
+    <x-nav-link class="navLinks" :href="route('families.create')" :active="request()->routeIs('families.create')">
+        {{ __('Add Animal Family') }}
     </x-nav-link>
 @endif
                    

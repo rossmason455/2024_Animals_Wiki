@@ -10,6 +10,7 @@ class Habitat extends Model
         'habitat_name',
         'description',
         'climate',
+        'image_url',
     ];
 
     // Define the many-to-many relationship with animals

@@ -61,7 +61,7 @@ public function store(Request $request)
         'social_structure' => 'required|string|max:255', // Change to required
         'threats' => 'required|string|max:255', // Change to required
         'primary_predator' => 'required|string|max:255', // Change to required
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240', // Optional image
+        'image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240', // Optional image
     ]);
 //stores image provided into the images folder
     $imageName = null;

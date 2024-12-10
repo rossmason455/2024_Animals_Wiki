@@ -55,6 +55,12 @@ class FamilyController extends Controller
     }
 
 
+    public function show(Family $family)
+    {
+        return view ('families.show')->with('family', $family);
+    }
+
+
     public function update(Request $request, Family $family)
 {
     $request->validate([

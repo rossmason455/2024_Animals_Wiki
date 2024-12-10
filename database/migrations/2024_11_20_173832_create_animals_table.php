@@ -24,6 +24,7 @@ class CreateAnimalsTable extends Migration
             $table->text('primary_predator');
             $table->string('image_url');
             $table->timestamps();
+            
         });
     }
 

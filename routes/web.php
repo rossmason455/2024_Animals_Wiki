@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\FamilyController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,6 +15,10 @@ Route::get('/dashboard', function () {
 
 // Group routes that require the 'auth' middleware, ensuring the user is authenticated
 Route::middleware('auth')->group(function () {
+
+
+
+    //Animal routes
 
     // GET route: Displays the list of animals
     Route::get('/animals', [AnimalController::class, 'index'])->name('animals.index'); 
@@ -41,6 +46,21 @@ Route::middleware('auth')->group(function () {
     
     // GET route: Displays details of a single animal
     Route::get('/animals/{animal}', [AnimalController::class, 'show'])->name('animals.show');
+
+
+
+    //Family Routes (no pun intended)
+    Route::get('families', [FamilyController::class, 'index'])->name('families.index');
+    Route::get('families/create', [FamilyController::class, 'create'])->name('families.create');
+    Route::post('families', [FamilyController::class, 'store'])->name('families.store');
+    Route::get('families/{family}/edit', [FamilyController::class, 'edit'])->name('families.edit');
+    Route::put('families/{family}', [FamilyController::class, 'update'])->name('families.update');
+    Route::delete('families/{family}', [FamilyController::class, 'destroy'])->name('families.destroy');
+    Route::get('families/{family}', [FamilyController::class, 'show'])->name('families.show');
+
+
+
+
     
     // GET route: Shows the profile edit form
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

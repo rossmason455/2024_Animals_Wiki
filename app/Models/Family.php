@@ -11,6 +11,7 @@ class Family extends Model
         'family_name',
         'characteristics',
         'evolutionary_origin',
+        'image_url',
     ];
 
 
