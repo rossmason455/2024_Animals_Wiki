@@ -63,6 +63,14 @@ class HabitatController extends Controller
     }
 
 
+
+    public function edit(Habitat $habitat)
+    {
+         return view('habitats.edit', compact('habitat'));
+    }
+
+
+
     public function update(Request $request, habitat $habitat)
 {
     $request->validate([

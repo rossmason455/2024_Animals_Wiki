@@ -61,6 +61,12 @@ class FamilyController extends Controller
     }
 
 
+    public function edit(Family $family)
+    {
+         return view('families.edit', compact('family'));
+    }
+
+
     public function update(Request $request, Family $family)
 {
     $request->validate([

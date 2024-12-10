@@ -11,7 +11,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h3 class="font-semibold text-lg mb-4">Edit Animal Family</h3>
-                    <x-animal-form :action="route('families.update', $animal->id)" :method="'PUT'" :family="$family"
+                    <x-family-form :action="route('families.update', $family->id)" :method="'PUT'" :family="$family"
                         buttonText="Update Animal Family" />
                 </div>
             </div>
