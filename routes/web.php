@@ -59,6 +59,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('families/{family}', [FamilyController::class, 'destroy'])->name('families.destroy');
     Route::get('families/{family}', [FamilyController::class, 'show'])->name('families.show');
 
+    Route::get('/families/search', [FamilyController::class, 'search'])->name('families.search');
+    
+  
+    Route::get('/families/autocomplete', [FamilyController::class, 'autocomplete'])->name('families.autocomplete');
+    
+   
+   
+   
+   
+   
+   
+   
     Route::get('habitats', [HabitatController::class, 'index'])->name('habitats.index');
     Route::get('habitats/create', [HabitatController::class, 'create'])->name('habitats.create');
     Route::post('habitats', [HabitatController::class, 'store'])->name('habitats.store');

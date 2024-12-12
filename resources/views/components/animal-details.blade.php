@@ -10,7 +10,9 @@
 'primary_predator',
 'image',
 'created_at',
-'updated_at'
+'updated_at',
+'family_id',
+'habitat_id'
 ])
 
 <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
@@ -54,5 +56,8 @@
         <!-- Timestamps -->
         <p class="text-gray-500 text-sm mt-4">Created: {{ $created_at }}</p>
         <p class="text-gray-500 text-sm">Updated: {{ $updated_at }}</p>
+
+        
+
     </div>
 </div>

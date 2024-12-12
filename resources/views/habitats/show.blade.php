@@ -17,21 +17,23 @@
                                   :created_at="$habitat->created_at"
                             :updated_at="$habitat->updated_at" />
 
-
+                            @if(auth()->check() && auth()->user()->role === 'admin')   
                         <div class="mt-4">
                             <a href="{{ route('habitats.edit', $habitat->id) }}" class="text-blue-500 hover:underline">
                                 Edit animal habitat
                             </a>
+                                </div>
 
 
-                        </div>
 
+                           
                         <form action="{{ route('habitats.destroy', $habitat->id) }}" method="POST"
                             onsubmit="return confirm('Are you sure you want to delete this habitat?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-red-600 hover:underline">Delete animal habitat</button>
                         </form>
+                        @endif
                     </div>
                 </div>
             </div>

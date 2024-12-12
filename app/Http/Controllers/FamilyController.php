@@ -8,10 +8,22 @@ use Illuminate\Http\Request;
 class FamilyController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->get('search');
+
+        $families = Family::when($search, function ($query) use ($search) {
+            return $query->where('family_name', 'like', "%{$search}%");
+        })->get();
+    
+
+
+
         $families = Family::all();  
-        return view('families.index', compact('families'));
+        return view('families.index', compact('families', 'search'));
+
+
+
     }
 
 
@@ -97,6 +109,25 @@ public function destroy(Family $family)
 
 return redirect()->route('family.index')->with('success', 'Family deleted successfully!');
 }
+
+
+public function autocomplete(Request $request)
+{
+    // 1. Retrieve the 'query' parameter from the incoming request.
+    // This is the search term entered by the user.
+    $query = $request->get('query');
+
+    // 2. Query the 'animals' table to find animals whose 'animal_name' 
+    // contains the search query (case-insensitive).
+    // 'LIKE' allows partial matching, and '%' is used to match any characters before and after the query.
+    // Only the 'animal_name' column is retrieved to keep the response lightweight.
+    $families = Family::where('family_name', 'LIKE', '%' . $query . '%')->get(['family_name']); 
+
+    // 3. Return the matching animal names as a JSON response.
+    // The front-end can then use this data to display the suggestions.
+    return response()->json($families);
+}
+
 
 
 
