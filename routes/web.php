@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::get('habitats/create', [HabitatController::class, 'create'])->name('habitats.create');
     Route::post('habitats', [HabitatController::class, 'store'])->name('habitats.store');
     Route::get('habitats/{habitat}/edit', [HabitatController::class, 'edit'])->name('habitats.edit');
-    Route::put('habitats/{habiat}', [HabitatController::class, 'update'])->name('habitats.update');
+    Route::put('habitats/{habitat}', [HabitatController::class, 'update'])->name('habitats.update');
     Route::delete('habitats/{habitat}', [HabitatController::class, 'destroy'])->name('habitats.destroy');
     Route::get('habitats/{habitat}', [HabitatController::class, 'show'])->name('habitats.show');
 

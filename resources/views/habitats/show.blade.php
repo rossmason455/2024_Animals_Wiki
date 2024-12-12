@@ -13,7 +13,8 @@
                     <div class="p-6 text-gray-900">
                         <x-habitat-detail :habitat_name="$habitat->habitat_name"
                                     :description="$habitat->description" :climate="$habitat->climate"
-                                  :image_url="$habitat->image_url" :created_at="$habitat->created_at"
+                                  :habitat_image="$habitat->image_url" 
+                                  :created_at="$habitat->created_at"
                             :updated_at="$habitat->updated_at" />
 
 
