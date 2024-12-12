@@ -61,7 +61,10 @@ public function store(Request $request)
         'social_structure' => 'required|string|max:255', // Change to required
         'threats' => 'required|string|max:255', // Change to required
         'primary_predator' => 'required|string|max:255', // Change to required
+        'family_id' => 'required|exists:families,id',
+        'habitat_id' => 'required|exists:habitats,id',
         'image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240', // Optional image
+  
     ]);
 //stores image provided into the images folder
     $imageName = null;
@@ -80,6 +83,8 @@ public function store(Request $request)
         'social_structure' => $request->social_structure,
         'threats' => $request->threats,
         'primary_predator' => $request->primary_predator,
+        'family_id' => $request->family_id,
+        'habitat_id' => $request->habitat_id,
         'image_url' => $imageName ? 'image/animals/' . $imageName : null, // Store image path
     ]);
 //redirects to the index with a success message
@@ -121,8 +126,11 @@ public function update(Request $request, Animal $animal)
         'diet' => 'required|string|max:255', // Change to required
         'social_structure' => 'required|string|max:255', // Change to required
         'threats' => 'required|string|max:255', 
-        'primary_predator' => 'required|string|max:255', 
+        'primary_predator' => 'required|string|max:255',
+        'family_id' => 'required|exists:families,id',
+        'habitat_id' => 'required|exists:habitats,id', 
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240', 
+
     ]);
 
     $imageName = null;
@@ -141,6 +149,8 @@ public function update(Request $request, Animal $animal)
         'social_structure' => $request->social_structure,
         'threats' => $request->threats,
         'primary_predator' => $request->primary_predator,
+        'family_id' => $request->family_id,
+        'habitat_id' => $request->habitat_id,
         'image_url' => $imageName ? 'image/animals/' . $imageName : $animal->image_url, // Use existing if no new image
     ]);
 

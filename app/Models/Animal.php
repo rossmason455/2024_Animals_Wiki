@@ -3,10 +3,17 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Animal extends Model
+class Animal extends Model implements Auditable
 {
-    use HasFactory;
+    
+  
+    
+    use HasFactory,\OwenIt\Auditing\Auditable;
+
+
+   
 
     // The Animal model represents the 'animals' table in the database and defines the fillable attributes for mass assignment.
 

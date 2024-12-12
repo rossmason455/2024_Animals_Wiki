@@ -99,6 +99,29 @@
         @enderror
     </div>
 
+
+     <!-- Family id -->
+     <div class="mb-4">
+        <label for="family_id" class="block text-sm text-gray-700">Family id</label>
+        <input type="text" name="family_id" id="family_id"
+            value="{{ old('family_id', $animal->family_id ?? '') }}"
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+        @error('family_id')
+        <p class="text-sm text-red-600">{{ $message }}</p>
+        @enderror
+    </div>
+
+
+    <div class="mb-4">
+        <label for="habitat_id" class="block text-sm text-gray-700">Habitat id</label>
+        <input type="text" name="habitat_id" id="habitat_id"
+            value="{{ old('habiat_id', $animal->family_id ?? '') }}"
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+        @error('habitat_id')
+        <p class="text-sm text-red-600">{{ $message }}</p>
+        @enderror
+    </div>
+
     <!-- Animal Image -->
     <div class="mb-4">
         <label for="image" class="block text-sm font-medium text-gray-700">Animal Image</label>
@@ -114,6 +137,10 @@
         <img src="{{ asset($animal->image_url) }}" alt="Animal image" class="w-24 h-32 object-cover" />
     </div>
     @endisset
+
+
+
+
 
     <!-- Submit Button -->
     <div>
