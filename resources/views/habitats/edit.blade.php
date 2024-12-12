@@ -11,7 +11,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h3 class="font-semibold text-lg mb-4">Edit Animal Habitat</h3>
-                    <x-animal-form :action="route('families.update', $animal->id)" :method="'PUT'" :habitat="$habitat"
+                    <x-habitat-form :action="route('habitats.update', $habitat->id)" :method="'PUT'" :habitat="$habitat"
                         buttonText="Update Animal Habitat" />
                 </div>
             </div>

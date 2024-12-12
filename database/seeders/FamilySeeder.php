@@ -18,6 +18,10 @@ class FamilySeeder extends Seeder
 
         // Insert the new family data
         DB::table('families')->insert([
+
+           
+
+
             [
                 'family_name' => 'Felidae',
                 'characteristics' => 'Carnivorous mammals known for retractable claws and sharp teeth. Includes lions, tigers, cheetahs, leopards, and more.',
