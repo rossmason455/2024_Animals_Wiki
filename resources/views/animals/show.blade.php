@@ -32,7 +32,7 @@
                             onsubmit="return confirm('Are you sure you want to delete this animal?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-600 hover:underline">Delete Animal</button>
+                            <button type="submit" class="text-red-600 hover:underline">Delete animal</button>
                         </form>
                     </div>
                 </div>

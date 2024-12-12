@@ -20,7 +20,7 @@
 
                         <div class="mt-4">
                             <a href="{{ route('habitats.edit', $habitat->id) }}" class="text-blue-500 hover:underline">
-                                Edit habitat
+                                Edit animal habitat
                             </a>
 
 
@@ -30,7 +30,7 @@
                             onsubmit="return confirm('Are you sure you want to delete this habitat?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-600 hover:underline">Delete habitat</button>
+                            <button type="submit" class="text-red-600 hover:underline">Delete animal habitat</button>
                         </form>
                     </div>
                 </div>

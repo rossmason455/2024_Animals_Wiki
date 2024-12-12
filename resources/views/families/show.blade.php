@@ -19,7 +19,7 @@
 
                         <div class="mt-4">
                             <a href="{{ route('families.edit', $family->id) }}" class="text-blue-500 hover:underline">
-                                Edit family
+                                Edit animal family
                             </a>
 
 
@@ -29,7 +29,7 @@
                             onsubmit="return confirm('Are you sure you want to delete this family?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-600 hover:underline">Delete family</button>
+                            <button type="submit" class="text-red-600 hover:underline">Delete animal family</button>
                         </form>
                     </div>
                 </div>

@@ -23,7 +23,7 @@
                             <div id="suggestions" class="absolute z-10 bg-white border mt-1 w-full hidden"></div>
                         </form>
 
-                        <h3 class="font-semibold text-lg mb-4">List of Animals:</h3>
+                        <h3 class="font-semibold text-lg mb-4">List of all animals:</h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 ">
                             @foreach($animals as $animal)
                             <a href="{{ route('animals.show', $animal) }}">
