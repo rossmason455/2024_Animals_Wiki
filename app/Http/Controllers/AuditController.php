@@ -10,8 +10,7 @@ class AuditController extends Controller
 {
     public function index()
     {
-        // Fetch all audit logs
-        $audits = Audit::latest()->get();  // You can adjust this to paginate or filter as needed
+        $audits = Audit::latest()->get(); 
         
         return view('audits.index', compact('audits'));
     }

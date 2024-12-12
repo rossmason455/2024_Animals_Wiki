@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\HabitatController;
+use App\Http\Controllers\AuditController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -79,7 +80,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('habitats/{habitat}', [HabitatController::class, 'destroy'])->name('habitats.destroy');
     Route::get('habitats/{habitat}', [HabitatController::class, 'show'])->name('habitats.show');
 
-
+    Route::get('audits', [AuditController::class, 'index'])->name('audits.index');
 
     
     // GET route: Shows the profile edit form

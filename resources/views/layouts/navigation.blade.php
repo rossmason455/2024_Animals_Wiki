@@ -55,6 +55,13 @@
         {{ __('Add Animal Habitat') }}
     </x-nav-link>
 @endif
+
+@if(auth()->check() && auth()->user()->role === 'admin')
+    <x-nav-link class="navLinks" :href="route('audits.index')" :active="request()->routeIs('audits.index')">
+        {{ __('Audits') }}
+    </x-nav-link>
+@endif
+
                    
                 </div>
             </div>

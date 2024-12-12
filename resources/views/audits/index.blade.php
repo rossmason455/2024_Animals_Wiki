@@ -32,7 +32,7 @@
                         <td class="px-4 py-2 border">{{ $audit->id }}</td>
                         <td class="px-4 py-2 border">{{ $audit->auditable_type }}</td>
                         <td class="px-4 py-2 border">{{ $audit->event }}</td>
-                        <td class="px-4 py-2 border">{{ $audit->user_id ? $audit->user->name : 'N/A' }}</td>
+                        <td class="px-4 py-2 border">{{ optional($audit->user)->name ?? 'N/A' }}</td>
                         <td class="px-4 py-2 border">{{ $audit->created_at->format('Y-m-d H:i') }}</td>
                         <td class="px-4 py-2 border">
                             <pre>{{ json_encode($audit->changes, JSON_PRETTY_PRINT) }}</pre>
