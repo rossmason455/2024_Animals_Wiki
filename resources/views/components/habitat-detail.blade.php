@@ -6,8 +6,7 @@
 'description',
 'habitat_image',
 'climate',
-'created_at',
-'updated_at'
+
 ])
 
 

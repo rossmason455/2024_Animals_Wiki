@@ -105,9 +105,9 @@ class FamilyController extends Controller
 
 public function destroy(Family $family)
 {
-     $family->delete(); // Deletes the animal from the database
+     $family->delete(); 
 
-return redirect()->route('family.index')->with('success', 'Family deleted successfully!');
+return redirect()->route('families.index')->with('success', 'Family deleted successfully!');
 }
 
 

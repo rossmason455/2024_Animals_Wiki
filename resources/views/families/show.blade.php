@@ -15,8 +15,7 @@
                                     :characteristics="$family->characteristics" :evolutionary_origin="$family->evolutionary_origin"
                                   :image="$family->image_url" 
                                   
-                    :created_at="$family->created_at"
-                            :updated_at="$family->updated_at" />
+                
                           
                             @if(auth()->check() && auth()->user()->role === 'admin')
                         <div class="mt-4">

@@ -99,7 +99,7 @@ public function destroy(habitat $habitat)
 {
      $habitat->delete(); // Deletes the animal from the database
 
-return redirect()->route('habitat.index')->with('success', 'habitat deleted successfully!');
+return redirect()->route('habitats.index')->with('success', 'habitat deleted successfully!');
 }
 
 
