@@ -29,7 +29,7 @@
 
 
                         
-                        @if(auth()->check() && auth()->user()->role === 'admin') 
+                    
                         <form action="{{ route('animals.destroy', $animal->id) }}" method="POST"
                             onsubmit="return confirm('Are you sure you want to delete this animal?');">
                             @csrf
