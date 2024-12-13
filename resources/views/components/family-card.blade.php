@@ -1,8 +1,8 @@
 @props([
-'family_name',
-'characteristics',
-'evolutioany_origin',
-'image'
+    'family_name',
+    'characteristics',
+    'evolutioany_origin',
+    'image'
 ])
 
 <div class="bg-white rounded-lg shadow-md overflow-hidden">

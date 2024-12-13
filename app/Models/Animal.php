@@ -7,37 +7,44 @@ use OwenIt\Auditing\Contracts\Auditable;
 
 class Animal extends Model implements Auditable
 {
-    
-  
-    
-    use HasFactory,\OwenIt\Auditing\Auditable;
 
 
-   
+
+    use HasFactory, \OwenIt\Auditing\Auditable;
+
+
+
 
     // The Animal model represents the 'animals' table in the database and defines the fillable attributes for mass assignment.
 
-    protected $fillable =[
-         'animal_name',
-    'scientific_name',
-    'description',
-    'behavioral_notes',
-    'lifespan',
-    'diet',
-    'social_structure',
-    'threats',
-    'primary_predator',
-    'image_url',
-    'created_at',
-    'updated_at',
-    'family_id',
+    protected $fillable = [
+        'animal_name',
+        'scientific_name',
+        'description',
+        'behavioral_notes',
+        'lifespan',
+        'diet',
+        'social_structure',
+        'threats',
+        'primary_predator',
+        'image_url',
+        'created_at',
+        'updated_at',
+        'family_id',
         'habitat_id',
     ];
+
+
+    // Define the many-to-one relationship with families table
 
     public function family()
     {
         return $this->belongsTo(Family::class);
     }
+
+
+
+    // Define the many-to-many relationship with habitats table
 
     public function habitat()
     {

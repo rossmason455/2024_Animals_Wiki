@@ -19,23 +19,23 @@
                             :image="$animal->image_url" :created_at="$animal->created_at"
                             :updated_at="$animal->updated_at" />
 
-                            @if(auth()->check() && auth()->user()->role === 'admin')
-                        <div class="mt-4">
-                            <a href="{{ route('animals.edit', $animal->id) }}" class="text-blue-500 hover:underline">
-                                Edit Animal
-                            </a>
-                          
-                    </div>
+                        @if(auth()->check() && auth()->user()->role === 'admin')
+                            <div class="mt-4">
+                                <a href="{{ route('animals.edit', $animal->id) }}" class="text-blue-500 hover:underline">
+                                    Edit Animal
+                                </a>
+
+                            </div>
 
 
-                        
-                    
-                        <form action="{{ route('animals.destroy', $animal->id) }}" method="POST"
-                            onsubmit="return confirm('Are you sure you want to delete this animal?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="text-red-600 hover:underline">Delete animal</button>
-                        </form>
+
+
+                            <form action="{{ route('animals.destroy', $animal->id) }}" method="POST"
+                                onsubmit="return confirm('Are you sure you want to delete this animal?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-600 hover:underline">Delete animal</button>
+                            </form>
                         @endif
                     </div>
                 </div>
@@ -43,4 +43,3 @@
         </div>
     </x-app-layout>
 </div>
-

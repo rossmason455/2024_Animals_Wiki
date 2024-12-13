@@ -1,17 +1,17 @@
 @props([
-'animal_name',
-'scientific_name',
-'description',
-'behavioral_notes',
-'lifespan',
-'diet',
-'social_structure',
-'threats',
-'primary_predator',
-'image',
+    'animal_name',
+    'scientific_name',
+    'description',
+    'behavioral_notes',
+    'lifespan',
+    'diet',
+    'social_structure',
+    'threats',
+    'primary_predator',
+    'image',
 
-'family_id',
-'habitat_id'
+    'family_id',
+    'habitat_id'
 ])
 
 <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
@@ -52,7 +52,7 @@
         <h2 class="text-2xl font-semibold text-gray-700 mb-2">Primary Predator</h2>
         <p class="text-gray-600 mb-4">{{ $primary_predator }}</p>
 
-       
+
 
     </div>
 </div>

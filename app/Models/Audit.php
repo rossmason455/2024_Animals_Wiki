@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Audit extends Model
 {
-    // Define the table name explicitly if it doesn't follow the Laravel naming convention
+
     protected $table = 'audits';
 
-    // Specify fillable columns if needed
+
+      // The Audit model represents the 'animals' table in the database and defines the fillable attributes for mass assignment.
+
     protected $fillable = [
     'user_id', 
     'event', 

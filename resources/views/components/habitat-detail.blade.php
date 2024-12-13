@@ -1,11 +1,8 @@
-
-
-
 @props([
-'habitat_name',
-'description',
-'habitat_image',
-'climate',
+    'habitat_name',
+    'description',
+    'habitat_image',
+    'climate',
 
 ])
 
@@ -17,7 +14,7 @@
 
     <!-- Content -->
     <div class="p-6">
-        <!-- Animal Name -->
+        <!-- Habitat Name -->
         <h1 class="text-3xl font-bold mb-2 text-gray-800">{{ $habitat_name }}</h1>
 
 
@@ -25,7 +22,7 @@
         <h2 class="text-2xl font-semibold text-gray-700 mb-2">Description</h2>
         <p class="text-gray-600 mb-4">{{ $description }}</p>
 
-        <!-- Behavioral Notes -->
+        <!-- Climate -->
         <h2 class="text-2xl font-semibold text-gray-700 mb-2">Climate</h2>
         <p class="text-gray-600 mb-4">{{ $climate }}</p>
 

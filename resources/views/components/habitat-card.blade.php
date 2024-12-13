@@ -1,8 +1,8 @@
 @props([
-'habitat_name',
-'description',
-'climate',
-'image'
+    'habitat_name',
+    'description',
+    'climate',
+    'image'
 ])
 
 <div class="bg-white rounded-lg shadow-md overflow-hidden">

@@ -7,128 +7,142 @@ use Illuminate\Http\Request;
 
 class FamilyController extends Controller
 {
-
+    /**
+     * Display a listing of the resource.
+     */
     public function index(Request $request)
     {
+        // Get the search query from the request
         $search = $request->get('search');
 
+        // Retrieve families with optional search filtering
         $families = Family::when($search, function ($query) use ($search) {
             return $query->where('family_name', 'like', "%{$search}%");
         })->get();
-    
 
-
-
-        $families = Family::all();  
+        // Redirect to the index view with families and search query
         return view('families.index', compact('families', 'search'));
-
-
-
     }
 
-
-
-
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-        if(auth()->user()->role !== 'admin'){
+        // Ensure only admins can access the create form
+        if (auth()->user()->role !== 'admin') {
             return redirect()->route('families.index')->with('error', 'Access denied.');
         }
-       
-       
+
         return view('families.create');
     }
 
-
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-
+        // Validate the request input fields
         $request->validate([
             'family_name' => 'required|string|max:255',
             'characteristics' => 'nullable|string|max:1000',
             'evolutionary_origin' => 'nullable|string|max:1000',
+            'image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
         ]);
-       
-        //stores image provided into the images folder
-    $imageName = null;
-    if ($request->hasFile('image')) {
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('image/animals'), $imageName);
-    }
 
+        // Optionally handle an image upload
+        $imageName = null;
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('image/animals'), $imageName);
+        }
+
+        // Insert the new record into the families table
         Family::create([
             'family_name' => $request->family_name,
             'characteristics' => $request->characteristics,
             'evolutionary_origin' => $request->evolutionary_origin,
+            'image_url' => $imageName ? 'image/animals/' . $imageName : null, 
         ]);
 
-  
+        // Redirect to the index with a success message
         return redirect()->route('families.index')->with('success', 'Family created successfully!');
     }
 
-
+    /**
+     * Display the specified resource.
+     */
     public function show(Family $family)
     {
-        return view ('families.show')->with('family', $family);
+        // Return the family details view
+        return view('families.show')->with('family', $family);
     }
 
-
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit(Family $family)
     {
-         return view('families.edit', compact('family'));
+        // Return the edit form for the family
+        return view('families.edit', compact('family'));
     }
 
-
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, Family $family)
-{
-    $request->validate([
-        'family_name' => 'required|string|max:255',
-        'characteristics' => 'nullable|string|max:1000',
-        'evolutionary_origin' => 'nullable|string|max:1000',
-    ]);
+    {
+        // Validate the request input fields
+        $request->validate([
+            'family_name' => 'required|string|max:255',
+            'characteristics' => 'nullable|string|max:1000',
+            'evolutionary_origin' => 'nullable|string|max:1000',
+            'image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
+        ]);
 
-    $imageName = null;
-    if ($request->hasFile('image')) {
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('image/animals'), $imageName);
-    }
+        // Optionally handle an image upload
+        $imageName = null;
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('image/animals'), $imageName);
+        }
 
-    $family->update([
-      'family_name' => $request->family_name,
+        // Update the family record with the provided data
+        $family->update([
+            'family_name' => $request->family_name,
             'characteristics' => $request->characteristics,
             'evolutionary_origin' => $request->evolutionary_origin,
-        'image_url' => $imageName ? 'image/animals/' . $imageName : $family->image_url, // Use existing if no new image
-    ]);
+            'image_url' => $imageName ? 'image/animals/' . $imageName : $family->image_url, // Use existing if no new image
+        ]);
 
-    return redirect()->route('families.index')->with('success', 'Family updated successfully!');
-}
+        // Redirect to the index with a success message
+        return redirect()->route('families.index')->with('success', 'Family updated successfully!');
+    }
 
-public function destroy(Family $family)
-{
-     $family->delete(); 
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Family $family)
+    {
+        // Delete the family record from the database
+        $family->delete();
 
-return redirect()->route('families.index')->with('success', 'Family deleted successfully!');
-}
+        // Redirect to the index with a success message
+        return redirect()->route('families.index')->with('success', 'Family deleted successfully!');
+    }
 
+    /**
+     * Handle autocomplete functionality for families.
+     */
+    public function autocomplete(Request $request)
+    {
+        // Retrieve the 'query' parameter from the request
+        $query = $request->get('query');
 
-public function autocomplete(Request $request)
-{
-    // 1. Retrieve the 'query' parameter from the incoming request.
-    // This is the search term entered by the user.
-    $query = $request->get('query');
+        // Query the families table to find matching family names
+        $families = Family::where('family_name', 'LIKE', '%' . $query . '%')->get(['family_name']);
 
-    // 2. Query the 'animals' table to find animals whose 'animal_name' 
-    // contains the search query (case-insensitive).
-    // 'LIKE' allows partial matching, and '%' is used to match any characters before and after the query.
-    // Only the 'animal_name' column is retrieved to keep the response lightweight.
-    $families = Family::where('family_name', 'LIKE', '%' . $query . '%')->get(['family_name']); 
-
-    // 3. Return the matching animal names as a JSON response.
-    // The front-end can then use this data to display the suggestions.
-    return response()->json($families);
-}
-
-
-
-
+        // Return the matching family names as a JSON response
+        return response()->json($families);
+    }
 }

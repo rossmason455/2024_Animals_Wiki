@@ -52,34 +52,56 @@ Route::middleware('auth')->group(function () {
 
 
     //Family Routes (no pun intended)
+
+    // GET route: Displays the list of animal families
     Route::get('families', [FamilyController::class, 'index'])->name('families.index');
+    
+        // GET route: Shows the form to create a new animal family
     Route::get('families/create', [FamilyController::class, 'create'])->name('families.create');
+
+    // POST route: Handles storing a new animal family in the database
     Route::post('families', [FamilyController::class, 'store'])->name('families.store');
+    
+    // GET route: Shows the form to edit an existing animal family
     Route::get('families/{family}/edit', [FamilyController::class, 'edit'])->name('families.edit');
+    
+    // PUT route: Updates an existing animal family's details in the database
     Route::put('families/{family}', [FamilyController::class, 'update'])->name('families.update');
+    
+    // DELETE route: Deletes an family from the database
     Route::delete('families/{family}', [FamilyController::class, 'destroy'])->name('families.destroy');
+    
+    // GET route: Displays details of a single family
     Route::get('families/{family}', [FamilyController::class, 'show'])->name('families.show');
 
+     // PUT route: Updates an existing animal family's details in the database
     Route::get('/families/search', [FamilyController::class, 'search'])->name('families.search');
     
-  
     Route::get('/families/autocomplete', [FamilyController::class, 'autocomplete'])->name('families.autocomplete');
     
-   
-   
-   
-   
-   
-   
-   
+    
+    // GET route: Displays the list of habitats
     Route::get('habitats', [HabitatController::class, 'index'])->name('habitats.index');
+    
+    // GET route: Shows the form to create a new habitat
     Route::get('habitats/create', [HabitatController::class, 'create'])->name('habitats.create');
+    
+    // POST route: Handles storing a new habitat in the database
     Route::post('habitats', [HabitatController::class, 'store'])->name('habitats.store');
+    
+    // GET route: Shows the form to edit an existing habitat
     Route::get('habitats/{habitat}/edit', [HabitatController::class, 'edit'])->name('habitats.edit');
+    
+     // PUT route: Updates an existing habitat's details in the database
     Route::put('habitats/{habitat}', [HabitatController::class, 'update'])->name('habitats.update');
+    
+    // DELETE route: Deletes an habitat from the database
     Route::delete('habitats/{habitat}', [HabitatController::class, 'destroy'])->name('habitats.destroy');
+    
+    // GET route: Displays details of a single habitat
     Route::get('habitats/{habitat}', [HabitatController::class, 'show'])->name('habitats.show');
 
+    // GET route: Displays the list of audits
     Route::get('audits', [AuditController::class, 'index'])->name('audits.index');
 
     
