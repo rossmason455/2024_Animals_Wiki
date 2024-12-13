@@ -2,12 +2,12 @@
     <x-app-layout>
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight ">
-                {{ __('All Animals') }}
+                {{ __('All Animal animals') }}
             </h2>
         </x-slot>
 
         <div
-            style="background-image: url('{{ asset('images/animal-background.jpg') }}'); background-size: contain; h60 ">
+        style="background-image: url('{{ asset('images/animal-background.jpg') }}'); background-size: cover; h60 ">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-6 ">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
@@ -21,11 +21,14 @@
                                 class="inline-flex items-center px-4 py-2 bg-[#DAA520] border  font-semibold text-md text-white uppercase tracking-widest hover:bg-[#F4A300] focus:outline-none  focus:ring-offset-2 transition ease-in-out duration-150"
                                 type="submit">Search</button>
                             <div id="suggestions" class="absolute z-10 bg-white border mt-1 w-full hidden"></div>
-                        </form>
+                        </form>   
 
-                        <h3 class="font-semibold text-lg mb-4">List of all animals:</h3>
+
+
+
+                        <h3 class="font-semibold text-lg mb-4">List of animal animals:</h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 ">
-                            @foreach($animals as $animal)
+                        @foreach($animals as $animal)
                             <a href="{{ route('animals.show', $animal) }}">
                                 <x-animal-card :animal_name="$animal->animal_name"
                                     :scientific_name="$animal->scientific_name" :description="$animal->description"

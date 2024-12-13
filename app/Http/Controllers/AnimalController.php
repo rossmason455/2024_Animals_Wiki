@@ -99,9 +99,9 @@ public function store(Request $request)
      */
     public function show(Animal $animal)
     {
-        $animal = Animal::with('family')->find($animal->id);
        
-        return view('animals.show', ['animal' => $animal]);
+       
+        return view ('animals.show')->with('animal', $animal);
     }
 
     /**
