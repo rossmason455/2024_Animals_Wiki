@@ -14,8 +14,7 @@
                         <x-habitat-detail :habitat_name="$habitat->habitat_name"
                                     :description="$habitat->description" :climate="$habitat->climate"
                                   :habitat_image="$habitat->image_url" 
-                                  :created_at="$habitat->created_at"
-                            :updated_at="$habitat->updated_at" />
+                                   />
 
                             @if(auth()->check() && auth()->user()->role === 'admin')   
                         <div class="mt-4">
