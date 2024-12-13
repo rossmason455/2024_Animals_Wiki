@@ -13,7 +13,7 @@
                     <div class="p-6 text-gray-900">
                         <x-family-detail :family_name="$family->family_name"
                                     :characteristics="$family->characteristics" :evolutionary_origin="$family->evolutionary_origin"
-                                  :image="$family->image_url" 
+                                  :image="$family->image_url"/>
                                   
                 
                           
