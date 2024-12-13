@@ -6,8 +6,7 @@
             </h2>
         </x-slot>
 
-        <div
-            style="background-image: url('{{ asset('images/animal-background.jpg') }}'); background-size: contain; h60 ">
+        <div>
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-6 ">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">

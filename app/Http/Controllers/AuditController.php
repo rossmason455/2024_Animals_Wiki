@@ -10,7 +10,7 @@ class AuditController extends Controller
 {
     public function index()
     {
-        $audits = Audit::latest()->get(); 
+        $audits = Audit::latest()->paginate(10);
         
         return view('audits.index', compact('audits'));
     }
